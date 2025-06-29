@@ -45,28 +45,45 @@ const groups = {
     tickers.length = 0;
   
     groups[tabKey].forEach(ev => {
-      const card  = document.createElement('div'); card.className = 'card';
+      const card = document.createElement('div');
+      card.className = 'card';
   
+      // Title
       const title = document.createElement('div');
       title.className = 'event-name';
       title.textContent = ev.name;
   
-      const dial  = document.createElement('div'); dial.className = 'analog';
-      const hr    = document.createElement('div'); hr.className = 'hand hr';
-      const mn    = document.createElement('div'); mn.className = 'hand mn';
-      const sc    = document.createElement('div'); sc.className = 'hand sc';
+      // Add readable date
+      const dateObj = new Date(ev.date);
+      const readable = dateObj.toLocaleDateString('en-US', {
+        month: 'long', day: 'numeric'
+      });
+      const dateLabel = document.createElement('div');
+      dateLabel.className = 'event-date';
+      dateLabel.textContent = readable;
+  
+      // Analog clock
+      const dial = document.createElement('div');
+      dial.className = 'analog';
+      const hr = document.createElement('div'); hr.className = 'hand hr';
+      const mn = document.createElement('div'); mn.className = 'hand mn';
+      const sc = document.createElement('div'); sc.className = 'hand sc';
       dial.append(hr, mn, sc);
   
-      const left  = document.createElement('div'); left.className = 'time-left';
+      // Countdown label
+      const left = document.createElement('div');
+      left.className = 'time-left';
   
-      card.append(title, dial, left);
+      // Assemble card
+      card.append(title, dateLabel, dial, left);
       grid.append(card);
   
+      // Store refs
       ev.hr = hr; ev.mn = mn; ev.sc = sc; ev.leftEl = left;
       tickers.push(ev);
     });
   }
-  
+ 
   /* ───────────── 5. TAB SWITCHING ────────── */
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
