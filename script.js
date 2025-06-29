@@ -13,7 +13,7 @@ const groups = {
     ],
   
     finals: [
-      { name: "Maths‑IV", date: "2025-07-09T09:30:00" },
+      { name: "Maths", date: "2025-07-09T09:30:00" },
       { name: "SMC",      date: "2025-07-11T09:30:00" },
       { name: "MC",       date: "2025-07-14T09:30:00" },
       { name: "EE",       date: "2025-07-16T09:30:00" },
