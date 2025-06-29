@@ -1,0 +1,164 @@
+/* 0. Fonts imported in HTML */
+
+/* ---------- root vars (theme overrides later) --------------- */
+:root{
+    --bg-1:#1e1e1e; --bg-2:#272727;
+    --accent:#ff5b9a;
+    --text:#ffffff;
+    --card-bg:rgba(255,255,255,0.12);
+    --card-border:rgba(255,255,255,0.25);
+    --blur:16px; --hand:#fff;
+  }
+  /* reset */
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  
+  body{
+    min-height:100vh;
+    background:linear-gradient(to bottom,var(--bg-1),var(--bg-2));
+    color:var(--text);
+    font-family:'Manrope',sans-serif;
+    display:flex;flex-direction:column;align-items:center;
+    gap:2.2rem;padding:2.5rem 1rem;
+    transition:background .6s,color .6s;
+  }
+  header{display:flex;flex-direction:column;align-items:center;gap:1rem}
+  h1{font:700 clamp(1.8rem,4vw,2.8rem) 'DM Sans',sans-serif}
+  
+  /* Theme circles */
+  #theme-circles{display:flex;gap:.9rem}
+  .circle{width:26px;height:26px;border-radius:50%;border:2px solid transparent;
+    background:var(--accent);cursor:pointer;transition:transform .3s,border .3s;}
+  .circle:hover{transform:scale(1.15)}
+  .circle.active{border-color:var(--text)}
+  
+  /* Sound toggle */
+  .sound-toggle{display:flex;align-items:center;gap:.6rem;font:600 .9rem 'Manrope',sans-serif}
+  .sound-toggle input{display:none}
+  .slider{
+    width:40px;height:20px;border-radius:20px;position:relative;
+    background:rgba(255,255,255,.3);cursor:pointer;transition:.3s;
+  }
+  .slider::after{
+    content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;
+    background:var(--text);border-radius:50%;transition:.3s;
+  }
+  input:checked + .slider{background:var(--accent)}
+  input:checked + .slider::after{transform:translateX(20px)}
+  .label{user-select:none}
+  
+  /* Tabs */
+  #tabs{display:flex;gap:1rem;flex-wrap:wrap}
+  .tab-btn{
+    padding:.55rem 1.2rem;border-radius:999px;border:1px solid var(--card-border);
+    background:var(--card-bg);backdrop-filter:blur(var(--blur));
+    font:600 .95rem 'DM Sans',sans-serif;cursor:pointer;color:inherit;
+    transition:background .3s,transform .2s;
+  }
+  .tab-btn:hover{transform:translateY(-2px)}
+  .tab-btn.active{background:var(--accent);color:#111}
+  
+  /* Grid */
+  #tab-content{width:100%;max-width:1000px;display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:2rem;margin-top:1.5rem;}
+  
+  /* Card */
+  .card{
+    backdrop-filter:blur(var(--blur));background:var(--card-bg);
+    border:1px solid var(--card-border);border-radius:20px;
+    padding:1.7rem 1.4rem 2.1rem;display:flex;flex-direction:column;
+    align-items:center;gap:1.1rem;text-align:center;
+    box-shadow:0 8px 26px rgba(0,0,0,.28);transition:transform .25s;
+  }
+  .card:hover{transform:translateY(-6px)}
+  .event-name{font:700 1.05rem 'DM Sans',sans-serif}
+  
+  /* Clock */
+  .analog{position:relative;width:72px;height:72px;border:3px solid var(--accent);
+    border-radius:50%;display:flex;justify-content:center;align-items:center;}
+  .hand{position:absolute;bottom:50%;left:50%;width:2px;border-radius:1px;
+    transform-origin:bottom center;}
+  .hand.hr{height:34px;background:var(--hand)}
+  .hand.mn{height:36px;background:var(--hand)}
+  .hand.sc{height:38px;background:var(--accent)}
+  
+  /* Countdown */
+  .time-left{font:700 .95rem 'Manrope',sans-serif;text-transform:capitalize}
+  
+  /* ---------- themes ----------------------------------------- */
+  body.theme-pink{--bg-1:#ff9a9e;--bg-2:#fad0c4;--accent:#ff2d75;
+    --text:#1c1c1c;--card-bg:rgba(255,255,255,.25);--card-border:rgba(255,255,255,.35);--hand:#1c1c1c;}
+  body.theme-dark{--bg-1:#0d1117;--bg-2:#1d2330;--accent:#00e0ff;
+    --text:#f0f0f0;--card-bg:rgba(255,255,255,.08);--card-border:rgba(255,255,255,.18);--hand:#fff;}
+  body.theme-light{--bg-1:#f6f8fc;--bg-2:#e9ecf2;--accent:#007bff;
+    --text:#202020;--card-bg:rgba(255,255,255,.45);--card-border:rgba(0,0,0,.08);--hand:#202020;}
+
+    /* … keep everything you already have … */
+
+/* === Toggle sliders (shared) =============================== */
+.toggles{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.toggle{display:flex;align-items:center;gap:.55rem;font:600 .9rem 'Manrope',sans-serif}
+.toggle input{display:none}
+.slider{
+  width:40px;height:20px;border-radius:20px;position:relative;
+  background:rgba(255,255,255,.3);cursor:pointer;transition:.3s;
+}
+.slider::after{
+  content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;
+  border-radius:50%;background:var(--text);transition:.3s;
+}
+input:checked + .slider{background:var(--accent)}
+input:checked + .slider::after{transform:translateX(20px)}
+.label{user-select:none}
+
+/* Mobile Responsiveness — keeps desktop intact */
+
+@media (max-width: 768px) {
+    body {
+      padding: 2rem 1rem;
+      font-size: clamp(0.85rem, 2.2vw, 1rem);
+    }
+  
+    #tabs,
+    #theme-circles,
+    .toggles {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.7rem;
+    }
+  
+    #tab-content {
+      grid-template-columns: repeat(auto-fit, minmax(90%, 1fr));
+      gap: 1.4rem;
+    }
+  
+    .analog {
+      width: clamp(50px, 20vw, 65px);
+      height: clamp(50px, 20vw, 65px);
+    }
+  
+    .event-name,
+    .time-left {
+      text-align: center;
+      word-break: break-word;
+      font-weight: 700;
+    }
+  
+    header {
+      gap: 1.2rem;
+      text-align: center;
+    }
+  }
+/* Icon toggle buttons */
+.icon-btn{
+    width:40px;height:40px;border-radius:50%;
+    border:1px solid var(--card-border);
+    background:var(--card-bg);
+    font-size:1.25rem;line-height:38px; /* center emoji */
+    display:flex;justify-content:center;align-items:center;
+    cursor:pointer;color:var(--text);
+    backdrop-filter:blur(var(--blur));
+    transition:background .3s,transform .2s;
+  }
+  .icon-btn:hover{transform:scale(1.1)}
+    
