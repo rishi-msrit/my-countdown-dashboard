@@ -149,6 +149,14 @@ input:checked + .slider::after{transform:translateX(20px)}
       text-align: center;
     }
   }
+  .event-date {
+    font-size: .85rem;
+    font-weight: 600;
+    opacity: .85;
+    margin-top: -0.8rem; /* tighter spacing */
+    margin-bottom: -0.2rem;
+  }
+  
 /* Icon toggle buttons */
 .icon-btn{
     width:40px;height:40px;border-radius:50%;
@@ -161,4 +169,5 @@ input:checked + .slider::after{transform:translateX(20px)}
     transition:background .3s,transform .2s;
   }
   .icon-btn:hover{transform:scale(1.1)}
-    
+
+
