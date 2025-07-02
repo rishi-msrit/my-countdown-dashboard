@@ -149,7 +149,7 @@ const groups = {
         ev.leftEl.textContent =
           `${plural(d, "day")} ${plural(hr, "hour")} ${plural(mn, "minute")} left`;
       } else {
-        ev.leftEl.textContent = 'Happening now!';
+        ev.leftEl.textContent = 'Done!';
       }
     });
   }
