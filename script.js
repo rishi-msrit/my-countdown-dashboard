@@ -1,9 +1,10 @@
 /* ───────────── 1. EVENT DATA ───────────── */
 const groups = {
     trip: [
-      { name: "Pookie's LKO Return", date: "2025-07-11T16:00:00" },
-      { name: "Pookie's Train",      date: "2025-07-22T15:30:00" },
-      { name: "Rishi's Train",       date: "2025-07-22T10:35:00" }
+      { name: "Didi's Kolkata Return",  date: "2025-07-11T19:35:00" },
+      { name: "Pookie's LKO Return",    date: "2025-07-17T08:35:00" },
+      { name: "Pookie's Train",         date: "2025-07-22T15:30:00" },
+      { name: "Rishi's Train",          date: "2025-07-22T10:35:00" }
     ],
   
     labs: [
